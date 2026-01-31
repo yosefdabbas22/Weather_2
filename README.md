@@ -66,6 +66,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+If You Want To Try The WebSite Directly (https://weather-2-871r-git-main-yosefdabbas22s-projects.vercel.app/)
+
 ### 4. Build for production
 
 ```bash
