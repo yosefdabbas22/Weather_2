@@ -1,0 +1,236 @@
+{
+  "US": {
+    "lat": 38.9072,
+    "lon": -77.0369,
+    "names": { "en": "United States", "ar": "الولايات المتحدة", "de": "Vereinigte Staaten", "es": "Estados Unidos", "fr": "États-Unis", "ja": "アメリカ", "zh": "美国", "en_alt": "USA" },
+    "capital": { "en": "Washington, D.C.", "ar": "واشنطن العاصمة", "de": "Washington, D.C.", "es": "Washington D.C.", "fr": "Washington", "ja": "ワシントンD.C.", "zh": "华盛顿" }
+  },
+  "SA": {
+    "lat": 24.7136,
+    "lon": 46.6753,
+    "names": { "en": "Saudi Arabia", "ar": "السعودية", "de": "Saudi-Arabien", "es": "Arabia Saudita", "fr": "Arabie saoudite", "ja": "サウジアラビア", "zh": "沙特阿拉伯" },
+    "capital": { "en": "Riyadh", "ar": "الرياض", "de": "Riad", "es": "Riad", "fr": "Riyad", "ja": "リヤド", "zh": "利雅得" }
+  },
+  "JO": {
+    "lat": 31.9454,
+    "lon": 35.9284,
+    "names": { "en": "Jordan", "ar": "الأردن", "de": "Jordanien", "es": "Jordania", "fr": "Jordanie", "ja": "ヨルダン", "zh": "约旦" },
+    "capital": { "en": "Amman", "ar": "عمّان", "de": "Amman", "es": "Amán", "fr": "Amman", "ja": "アンマン", "zh": "安曼" }
+  },
+  "DE": {
+    "lat": 52.52,
+    "lon": 13.405,
+    "names": { "en": "Germany", "ar": "ألمانيا", "de": "Deutschland", "es": "Alemania", "fr": "Allemagne", "ja": "ドイツ", "zh": "德国" },
+    "capital": { "en": "Berlin", "ar": "برلين", "de": "Berlin", "es": "Berlín", "fr": "Berlin", "ja": "ベルリン", "zh": "柏林" }
+  },
+  "FR": {
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "names": { "en": "France", "ar": "فرنسا", "de": "Frankreich", "es": "Francia", "fr": "France", "ja": "フランス", "zh": "法国" },
+    "capital": { "en": "Paris", "ar": "باريس", "de": "Paris", "es": "París", "fr": "Paris", "ja": "パリ", "zh": "巴黎" }
+  },
+  "GB": {
+    "lat": 51.5074,
+    "lon": -0.1278,
+    "names": { "en": "United Kingdom", "ar": "المملكة المتحدة", "de": "Vereinigtes Königreich", "es": "Reino Unido", "fr": "Royaume-Uni", "ja": "イギリス", "zh": "英国" },
+    "capital": { "en": "London", "ar": "لندن", "de": "London", "es": "Londres", "fr": "Londres", "ja": "ロンドン", "zh": "伦敦" }
+  },
+  "JP": {
+    "lat": 35.6762,
+    "lon": 139.6503,
+    "names": { "en": "Japan", "ar": "اليابان", "de": "Japan", "es": "Japón", "fr": "Japon", "ja": "日本", "zh": "日本" },
+    "capital": { "en": "Tokyo", "ar": "طوكيو", "de": "Tokio", "es": "Tokio", "fr": "Tokyo", "ja": "東京", "zh": "东京" }
+  },
+  "CN": {
+    "lat": 39.9042,
+    "lon": 116.4074,
+    "names": { "en": "China", "ar": "الصين", "de": "China", "es": "China", "fr": "Chine", "ja": "中国", "zh": "中国" },
+    "capital": { "en": "Beijing", "ar": "بكين", "de": "Peking", "es": "Pekín", "fr": "Pékin", "ja": "北京", "zh": "北京" }
+  },
+  "IN": {
+    "lat": 28.6139,
+    "lon": 77.209,
+    "names": { "en": "India", "ar": "الهند", "de": "Indien", "es": "India", "fr": "Inde", "ja": "インド", "zh": "印度" },
+    "capital": { "en": "New Delhi", "ar": "نيودلهي", "de": "Neu-Delhi", "es": "Nueva Delhi", "fr": "New Delhi", "ja": "ニューデリー", "zh": "新德里" }
+  },
+  "RU": {
+    "lat": 55.7558,
+    "lon": 37.6173,
+    "names": { "en": "Russia", "ar": "روسيا", "de": "Russland", "es": "Rusia", "fr": "Russie", "ja": "ロシア", "zh": "俄罗斯" },
+    "capital": { "en": "Moscow", "ar": "موسكو", "de": "Moskau", "es": "Moscú", "fr": "Moscou", "ja": "モスクワ", "zh": "莫斯科" }
+  },
+  "BR": {
+    "lat": -15.7939,
+    "lon": -47.8828,
+    "names": { "en": "Brazil", "ar": "البرازيل", "de": "Brasilien", "es": "Brasil", "fr": "Brésil", "ja": "ブラジル", "zh": "巴西" },
+    "capital": { "en": "Brasília", "ar": "برازيليا", "de": "Brasília", "es": "Brasilia", "fr": "Brasilia", "ja": "ブラジリア", "zh": "巴西利亚" }
+  },
+  "IT": {
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "names": { "en": "Italy", "ar": "إيطاليا", "de": "Italien", "es": "Italia", "fr": "Italie", "ja": "イタリア", "zh": "意大利" },
+    "capital": { "en": "Rome", "ar": "روما", "de": "Rom", "es": "Roma", "fr": "Rome", "ja": "ローマ", "zh": "罗马" }
+  },
+  "ES": {
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "names": { "en": "Spain", "ar": "إسبانيا", "de": "Spanien", "es": "España", "fr": "Espagne", "ja": "スペイン", "zh": "西班牙" },
+    "capital": { "en": "Madrid", "ar": "مدريد", "de": "Madrid", "es": "Madrid", "fr": "Madrid", "ja": "マドリード", "zh": "马德里" }
+  },
+  "TR": {
+    "lat": 39.9334,
+    "lon": 32.8597,
+    "names": { "en": "Turkey", "ar": "تركيا", "de": "Türkei", "es": "Turquía", "fr": "Turquie", "ja": "トルコ", "zh": "土耳其" },
+    "capital": { "en": "Ankara", "ar": "أنقرة", "de": "Ankara", "es": "Ankara", "fr": "Ankara", "ja": "アンカラ", "zh": "安卡拉" }
+  },
+  "KR": {
+    "lat": 37.5665,
+    "lon": 126.978,
+    "names": { "en": "South Korea", "ar": "كوريا الجنوبية", "de": "Südkorea", "es": "Corea del Sur", "fr": "Corée du Sud", "ja": "韓国", "zh": "韩国" },
+    "capital": { "en": "Seoul", "ar": "سيول", "de": "Seoul", "es": "Seúl", "fr": "Séoul", "ja": "ソウル", "zh": "首尔" }
+  },
+  "EG": {
+    "lat": 30.0444,
+    "lon": 31.2357,
+    "names": { "en": "Egypt", "ar": "مصر", "de": "Ägypten", "es": "Egipto", "fr": "Égypte", "ja": "エジプト", "zh": "埃及" },
+    "capital": { "en": "Cairo", "ar": "القاهرة", "de": "Kairo", "es": "El Cairo", "fr": "Le Caire", "ja": "カイロ", "zh": "开罗" }
+  },
+  "AE": {
+    "lat": 24.4539,
+    "lon": 54.3773,
+    "names": { "en": "United Arab Emirates", "ar": "الإمارات", "de": "Vereinigte Arabische Emirate", "es": "Emiratos Árabes Unidos", "fr": "Émirats arabes unis", "ja": "アラブ首長国連邦", "zh": "阿联酋" },
+    "capital": { "en": "Abu Dhabi", "ar": "أبوظبي", "de": "Abu Dhabi", "es": "Abu Dabi", "fr": "Abou Dhabi", "ja": "アブダビ", "zh": "阿布扎比" }
+  },
+  "CA": {
+    "lat": 45.4215,
+    "lon": -75.6972,
+    "names": { "en": "Canada", "ar": "كندا", "de": "Kanada", "es": "Canadá", "fr": "Canada", "ja": "カナダ", "zh": "加拿大" },
+    "capital": { "en": "Ottawa", "ar": "أوتاوا", "de": "Ottawa", "es": "Ottawa", "fr": "Ottawa", "ja": "オタワ", "zh": "渥太华" }
+  },
+  "AU": {
+    "lat": -35.2809,
+    "lon": 149.13,
+    "names": { "en": "Australia", "ar": "أستراليا", "de": "Australien", "es": "Australia", "fr": "Australie", "ja": "オーストラリア", "zh": "澳大利亚" },
+    "capital": { "en": "Canberra", "ar": "كانبرا", "de": "Canberra", "es": "Canberra", "fr": "Canberra", "ja": "キャンベラ", "zh": "堪培拉" }
+  },
+  "MX": {
+    "lat": 19.4326,
+    "lon": -99.1332,
+    "names": { "en": "Mexico", "ar": "المكسيك", "de": "Mexiko", "es": "México", "fr": "Mexique", "ja": "メキシコ", "zh": "墨西哥" },
+    "capital": { "en": "Mexico City", "ar": "مدينة مكسيكو", "de": "Mexiko-Stadt", "es": "Ciudad de México", "fr": "Mexico", "ja": "メキシコシティ", "zh": "墨西哥城" }
+  },
+  "PT": {
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "names": { "en": "Portugal", "ar": "البرتغال", "de": "Portugal", "es": "Portugal", "fr": "Portugal", "ja": "ポルトガル", "zh": "葡萄牙" },
+    "capital": { "en": "Lisbon", "ar": "لشبونة", "de": "Lissabon", "es": "Lisboa", "fr": "Lisbonne", "ja": "リスボン", "zh": "里斯本" }
+  },
+  "NL": {
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "names": { "en": "Netherlands", "ar": "هولندا", "de": "Niederlande", "es": "Países Bajos", "fr": "Pays-Bas", "ja": "オランダ", "zh": "荷兰" },
+    "capital": { "en": "Amsterdam", "ar": "أمستردام", "de": "Amsterdam", "es": "Ámsterdam", "fr": "Amsterdam", "ja": "アムステルダム", "zh": "阿姆斯特丹" }
+  },
+  "IL": {
+    "lat": 32.0853,
+    "lon": 34.7818,
+    "names": { "en": "Israel", "ar": "إسرائيل", "de": "Israel", "es": "Israel", "fr": "Israël", "ja": "イスラエル", "zh": "以色列" },
+    "capital": { "en": "Jerusalem", "ar": "القدس", "de": "Jerusalem", "es": "Jerusalén", "fr": "Jérusalem", "ja": "エルサレム", "zh": "耶路撒冷" }
+  },
+  "IR": {
+    "lat": 35.6892,
+    "lon": 51.389,
+    "names": { "en": "Iran", "ar": "إيران", "de": "Iran", "es": "Irán", "fr": "Iran", "ja": "イラン", "zh": "伊朗" },
+    "capital": { "en": "Tehran", "ar": "طهران", "de": "Teheran", "es": "Teherán", "fr": "Téhéran", "ja": "テヘラン", "zh": "德黑兰" }
+  },
+  "IQ": {
+    "lat": 33.3152,
+    "lon": 44.3661,
+    "names": { "en": "Iraq", "ar": "العراق", "de": "Irak", "es": "Irak", "fr": "Irak", "ja": "イラク", "zh": "伊拉克" },
+    "capital": { "en": "Baghdad", "ar": "بغداد", "de": "Bagdad", "es": "Bagdad", "fr": "Bagdad", "ja": "バグダッド", "zh": "巴格达" }
+  },
+  "QA": {
+    "lat": 25.2854,
+    "lon": 51.531,
+    "names": { "en": "Qatar", "ar": "قطر", "de": "Katar", "es": "Catar", "fr": "Qatar", "ja": "カタール", "zh": "卡塔尔" },
+    "capital": { "en": "Doha", "ar": "الدوحة", "de": "Doha", "es": "Doha", "fr": "Doha", "ja": "ドーハ", "zh": "多哈" }
+  },
+  "KW": {
+    "lat": 29.3759,
+    "lon": 47.9774,
+    "names": { "en": "Kuwait", "ar": "الكويت", "de": "Kuwait", "es": "Kuwait", "fr": "Koweït", "ja": "クウェート", "zh": "科威特" },
+    "capital": { "en": "Kuwait City", "ar": "مدينة الكويت", "de": "Kuwait-Stadt", "es": "Kuwait", "fr": "Koweït", "ja": "クウェート市", "zh": "科威特城" }
+  },
+  "BH": {
+    "lat": 26.2285,
+    "lon": 50.586,
+    "names": { "en": "Bahrain", "ar": "البحرين", "de": "Bahrain", "es": "Baréin", "fr": "Bahreïn", "ja": "バーレーン", "zh": "巴林" },
+    "capital": { "en": "Manama", "ar": "المنامة", "de": "Manama", "es": "Manama", "fr": "Manama", "ja": "マナーマ", "zh": "麦纳麦" }
+  },
+  "OM": {
+    "lat": 23.588,
+    "lon": 58.3829,
+    "names": { "en": "Oman", "ar": "عُمان", "de": "Oman", "es": "Omán", "fr": "Oman", "ja": "オマーン", "zh": "阿曼" },
+    "capital": { "en": "Muscat", "ar": "مسقط", "de": "Maskat", "es": "Mascate", "fr": "Mascate", "ja": "マスカット", "zh": "马斯喀特" }
+  },
+  "LB": {
+    "lat": 33.8938,
+    "lon": 35.5018,
+    "names": { "en": "Lebanon", "ar": "لبنان", "de": "Libanon", "es": "Líbano", "fr": "Liban", "ja": "レバノン", "zh": "黎巴嫩" },
+    "capital": { "en": "Beirut", "ar": "بيروت", "de": "Beirut", "es": "Beirut", "fr": "Beyrouth", "ja": "ベイルート", "zh": "贝鲁特" }
+  },
+  "SY": {
+    "lat": 33.5138,
+    "lon": 36.2765,
+    "names": { "en": "Syria", "ar": "سوريا", "de": "Syrien", "es": "Siria", "fr": "Syrie", "ja": "シリア", "zh": "叙利亚" },
+    "capital": { "en": "Damascus", "ar": "دمشق", "de": "Damaskus", "es": "Damasco", "fr": "Damas", "ja": "ダマスカス", "zh": "大马士革" }
+  },
+  "PL": {
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "names": { "en": "Poland", "ar": "بولندا", "de": "Polen", "es": "Polonia", "fr": "Pologne", "ja": "ポーランド", "zh": "波兰" },
+    "capital": { "en": "Warsaw", "ar": "وارسو", "de": "Warschau", "es": "Varsovia", "fr": "Varsovie", "ja": "ワルシャワ", "zh": "华沙" }
+  },
+  "GR": {
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "names": { "en": "Greece", "ar": "اليونان", "de": "Griechenland", "es": "Grecia", "fr": "Grèce", "ja": "ギリシャ", "zh": "希腊" },
+    "capital": { "en": "Athens", "ar": "أثينا", "de": "Athen", "es": "Atenas", "fr": "Athènes", "ja": "アテネ", "zh": "雅典" }
+  },
+  "SE": {
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "names": { "en": "Sweden", "ar": "السويد", "de": "Schweden", "es": "Suecia", "fr": "Suède", "ja": "スウェーデン", "zh": "瑞典" },
+    "capital": { "en": "Stockholm", "ar": "ستوكهولم", "de": "Stockholm", "es": "Estocolmo", "fr": "Stockholm", "ja": "ストックホルム", "zh": "斯德哥尔摩" }
+  },
+  "NO": {
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "names": { "en": "Norway", "ar": "النرويج", "de": "Norwegen", "es": "Noruega", "fr": "Norvège", "ja": "ノルウェー", "zh": "挪威" },
+    "capital": { "en": "Oslo", "ar": "أوسلو", "de": "Oslo", "es": "Oslo", "fr": "Oslo", "ja": "オスロ", "zh": "奥斯陆" }
+  },
+  "CH": {
+    "lat": 46.948,
+    "lon": 7.4474,
+    "names": { "en": "Switzerland", "ar": "سويسرا", "de": "Schweiz", "es": "Suiza", "fr": "Suisse", "ja": "スイス", "zh": "瑞士" },
+    "capital": { "en": "Bern", "ar": "برن", "de": "Bern", "es": "Berna", "fr": "Berne", "ja": "ベルン", "zh": "伯尔尼" }
+  },
+  "AT": {
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "names": { "en": "Austria", "ar": "النمسا", "de": "Österreich", "es": "Austria", "fr": "Autriche", "ja": "オーストリア", "zh": "奥地利" },
+    "capital": { "en": "Vienna", "ar": "فيينا", "de": "Wien", "es": "Viena", "fr": "Vienne", "ja": "ウィーン", "zh": "维也纳" }
+  },
+  "BE": {
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "names": { "en": "Belgium", "ar": "بلجيكا", "de": "Belgien", "es": "Bélgica", "fr": "Belgique", "ja": "ベルギー", "zh": "比利时" },
+    "capital": { "en": "Brussels", "ar": "بروكسل", "de": "Brüssel", "es": "Bruselas", "fr": "Bruxelles", "ja": "ブリュッセル", "zh": "布鲁塞尔" }
+  },
+  "IE": {
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "names": { "en": "Ireland", "ar": "أيرلندا", "de": "Irland", "es": "Irlanda", "fr": "Irlande", "ga": "Éire", "ja": "アイルランド", "zh": "爱尔兰" },
+    "capital": { "en": "Dublin", "ar": "دبلن", "de": "Dublin", "es": "Dublín", "fr": "Dublin", "ga": "Baile Átha Cliath", "ja": "ダブリン", "zh": "都柏林" }
+  }
+}
