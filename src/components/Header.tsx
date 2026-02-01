@@ -21,13 +21,8 @@ export function Header({ unit, onUnitChange }: HeaderProps) {
   };
 
   return (
-    <header
-      className="flex h-[48px] w-full max-w-[1298px] shrink-0 flex-row items-center justify-between border-b border-transparent px-[40px] py-3"
-      style={{
-        borderBottomColor: "rgba(230, 232, 235, 0.2)",
-        boxSizing: "border-box",
-      }}
-    >
+    <div className="w-full max-w-[1298px] shrink-0">
+      <header className="flex h-12 flex-row items-center justify-between px-10 py-3">
       <div className="flex items-center gap-2">
         <Image
           src={logoIcon}
@@ -51,16 +46,19 @@ export function Header({ unit, onUnitChange }: HeaderProps) {
           {t("appTitle")}
         </span>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         <div className="relative flex items-center">
           <select
             value={langCode}
             onChange={(e) => setLanguage(e.target.value)}
-            className="cursor-pointer appearance-none border-0 bg-transparent pr-5 text-white focus:outline-none focus:ring-0"
+            className="cursor-pointer appearance-none border-0 bg-transparent pr-6 text-white shadow-none outline-none focus:outline-none focus:ring-0 hover:bg-transparent"
             style={{
               fontFamily: "var(--font-space-grotesk), system-ui, sans-serif",
-              fontSize: "13px",
-              lineHeight: "18px",
+              fontWeight: 700,
+              fontSize: "18px",
+              lineHeight: "23px",
+              color: "#FFFFFF",
+              background: "transparent",
             }}
             aria-label={t("selectLanguage")}
           >
@@ -104,6 +102,12 @@ export function Header({ unit, onUnitChange }: HeaderProps) {
         />
       </button>
       </div>
-    </header>
+      </header>
+      <div
+        className="h-px w-full"
+        style={{ backgroundColor: "rgba(230, 232, 235, 0.2)" }}
+        aria-hidden
+      />
+    </div>
   );
 }

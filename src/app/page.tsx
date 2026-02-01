@@ -106,7 +106,6 @@ export default function Home() {
 
         const data = await res.json();
         setWeatherData(data);
-        setSearchQuery(`${data.city}, ${data.country}`);
         setState("success");
         lastFetchedRef.current = { type: "coordinates", lat, lon };
       } catch (err) {
@@ -177,18 +176,19 @@ export default function Home() {
     if (!query) return;
     lastFetchedRef.current = { type: "city", city: query };
     fetchWeather(query);
+    setSearchQuery("");
   };
 
   const handleSelectSuggestion = (city: string) => {
-    setSearchQuery(city);
     lastFetchedRef.current = { type: "city", city };
     fetchWeather(city);
+    setSearchQuery("");
   };
 
   const handleSelectRecentSearch = (item: { name: string; country: string; lat: number; lon: number }) => {
-    setSearchQuery(`${item.name}, ${item.country}`);
     addRecentSearch(item);
     fetchByCoordinates(item.lat, item.lon);
+    setSearchQuery("");
   };
 
   const handleUnitChange = (newUnit: TemperatureUnit) => {
