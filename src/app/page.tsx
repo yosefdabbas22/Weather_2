@@ -11,6 +11,7 @@ import { useRecentSearches } from "@/hooks/useRecentSearches";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslations } from "@/hooks/useTranslations";
 import { useWeatherConditions } from "@/hooks/useWeatherConditions";
+import { celsiusToFahrenheit } from "@/lib/utils";
 import type { TemperatureUnit } from "@/types/weather";
 
 interface WeatherData {
@@ -60,7 +61,7 @@ export default function Home() {
 
       try {
         const res = await fetch(
-          `/api/weather?city=${encodeURIComponent(city)}&unit=${unit}&language=${encodeURIComponent(langCode)}`
+          `/api/weather?city=${encodeURIComponent(city)}&language=${encodeURIComponent(langCode)}`
         );
 
         if (!res.ok) {
@@ -85,7 +86,7 @@ export default function Home() {
         setWeatherData(null);
       }
     },
-    [unit, addRecentSearch, t, langCode]
+    [addRecentSearch, t, langCode]
   );
 
   const fetchByCoordinates = useCallback(
@@ -95,7 +96,7 @@ export default function Home() {
 
       try {
         const res = await fetch(
-          `/api/geolocation?lat=${lat}&lon=${lon}&unit=${unit}&language=${encodeURIComponent(langCode)}`
+          `/api/geolocation?lat=${lat}&lon=${lon}&language=${encodeURIComponent(langCode)}`
         );
 
         if (!res.ok) {
@@ -114,7 +115,7 @@ export default function Home() {
         setWeatherData(null);
       }
     },
-    [unit, t, langCode]
+    [t, langCode]
   );
 
   const fetchByGeolocation = useCallback(async () => {
@@ -128,7 +129,7 @@ export default function Home() {
         try {
           const { latitude, longitude } = position.coords;
           const res = await fetch(
-            `/api/geolocation?lat=${latitude}&lon=${longitude}&unit=${unit}&language=${encodeURIComponent(langCode)}`
+            `/api/geolocation?lat=${latitude}&lon=${longitude}&language=${encodeURIComponent(langCode)}`
           );
 
           if (!res.ok) {
@@ -149,7 +150,7 @@ export default function Home() {
         setState("empty");
       }
     );
-  }, [unit, t, langCode]);
+  }, [t, langCode]);
 
   useEffect(() => {
     lastFetchedRef.current = { type: "geo" };
@@ -193,20 +194,6 @@ export default function Home() {
   const handleUnitChange = (newUnit: TemperatureUnit) => {
     setUnit(newUnit);
   };
-
-  useEffect(() => {
-    if (unit && state === "success" && weatherData && lastFetchedRef.current) {
-      const ref = lastFetchedRef.current;
-      if (ref.type === "city" && ref.city) {
-        fetchWeather(ref.city);
-      } else if (ref.type === "coordinates" && ref.lat != null && ref.lon != null) {
-        fetchByCoordinates(ref.lat, ref.lon);
-      } else {
-        fetchByGeolocation();
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [unit]);
 
   const tempSuffix = unit === "fahrenheit" ? "°F" : "°C";
 
@@ -277,9 +264,9 @@ export default function Home() {
                   <p className="text-base leading-6 text-white">
                     {getCondition(weatherData.weatherCode).condition} {t("withHighOf")}{" "}
                     {Math.round(
-                      Math.max(
-                        ...weatherData.dailyForecast.map((d) => d.tempMax)
-                      )
+                      unit === "fahrenheit"
+                        ? celsiusToFahrenheit(Math.max(...weatherData.dailyForecast.map((d) => d.tempMax)))
+                        : Math.max(...weatherData.dailyForecast.map((d) => d.tempMax))
                     )}
                     {tempSuffix}
                   </p>

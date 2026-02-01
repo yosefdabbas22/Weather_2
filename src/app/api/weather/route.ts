@@ -11,11 +11,6 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const city = searchParams.get("city");
   const lang = searchParams.get("language")?.toLowerCase() || "en";
-  const unit = searchParams.get("unit") || "celsius";
-  const temperature = Number(searchParams.get("temperature")) || 0;
-  const toFahrenheit = (c: number) => Math.round((c * 9) / 5 + 32);
-  const displayTemp = unit === "celsius" ? temperature : toFahrenheit(temperature);
-
 
   if (!city || city.length < 2) {
     return NextResponse.json(
@@ -74,7 +69,7 @@ export async function GET(request: NextRequest) {
       longitude,
 
       // Always Celsius from API
-      temperature: displayTemp,
+      temperature: current.temperature_2m,
       apparentTemperature: current.apparent_temperature,
       humidity: current.relative_humidity_2m,
       windSpeed: Math.round(current.wind_speed_10m),

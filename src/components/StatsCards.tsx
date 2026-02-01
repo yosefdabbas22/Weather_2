@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "@/hooks/useTranslations";
+import { celsiusToFahrenheit, kmhToMph } from "@/lib/utils";
 
 interface StatCardProps {
   title: string;
@@ -32,10 +33,12 @@ interface StatsCardsProps {
   windUnit?: "mph" | "kmh";
 }
 
-export function StatsCards({ humidity, windSpeed, feelsLike, unit, windUnit = "mph" }: StatsCardsProps) {
+export function StatsCards({ humidity, windSpeed, feelsLike, unit }: StatsCardsProps) {
   const { t } = useTranslations();
   const tempSuffix = unit === "fahrenheit" ? "°F" : "°C";
-  const windLabel = windUnit === "mph" ? "mph" : "km/h";
+  const windLabel = unit === "fahrenheit" ? "mph" : "km/h";
+  const displayFeelsLike = unit === "fahrenheit" ? celsiusToFahrenheit(feelsLike) : feelsLike;
+  const displayWindSpeed = unit === "fahrenheit" ? kmhToMph(windSpeed) : windSpeed;
 
   return (
     <div className="flex w-full flex-wrap items-start gap-4 sm:flex-row">
@@ -46,12 +49,12 @@ export function StatsCards({ humidity, windSpeed, feelsLike, unit, windUnit = "m
       />
       <StatCard
         title={t("wind")}
-        value={`${windSpeed} ${windLabel}`}
+        value={`${Math.round(displayWindSpeed)} ${windLabel}`}
         subtitle={t("wind")}
       />
       <StatCard
         title={t("feelsLike")}
-        value={`${Math.round(feelsLike)}${tempSuffix}`}
+        value={`${Math.round(displayFeelsLike)}${tempSuffix}`}
         subtitle={t("thermometer")}
       />
     </div>

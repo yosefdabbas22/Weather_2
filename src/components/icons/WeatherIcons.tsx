@@ -55,18 +55,36 @@ export function WeatherIcon({
   const paddingStyle = isFigmaSize
     ? { padding: `${FIGMA_PADDING_Y}px ${FIGMA_PADDING_X}px` }
     : undefined;
+  const isThunderstorm = variant === "thunderstorm";
+
+  const containerStyle: React.CSSProperties = {
+    width: containerW,
+    height: containerH,
+    ...paddingStyle,
+    ...(isThunderstorm && {
+      background: "transparent",
+      boxShadow: "none",
+      border: "none",
+    }),
+  };
+
+  const imageStyle: React.CSSProperties = {
+    width: visualSize,
+    height: visualSize,
+    ...(isThunderstorm && {
+      boxShadow: "none",
+      mixBlendMode: "lighten",
+    }),
+  };
 
   return (
     <span
       className={cn(
         "flex shrink-0 items-center justify-center overflow-hidden",
+        isThunderstorm && "shadow-none",
         className
       )}
-      style={{
-        width: containerW,
-        height: containerH,
-        ...paddingStyle,
-      }}
+      style={containerStyle}
       aria-hidden
     >
       <Image
@@ -74,8 +92,8 @@ export function WeatherIcon({
         alt={alt}
         width={visualSize}
         height={visualSize}
-        className="object-contain"
-        style={{ width: visualSize, height: visualSize }}
+        className={cn("object-contain", isThunderstorm && "shadow-none")}
+        style={imageStyle}
       />
     </span>
   );

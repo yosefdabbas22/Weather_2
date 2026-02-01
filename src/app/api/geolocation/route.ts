@@ -7,7 +7,6 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const lat = searchParams.get("lat");
   const lon = searchParams.get("lon");
-  const unit = searchParams.get("unit") || "celsius";
   const lang = searchParams.get("language")?.toLowerCase() || "en";
 
   if (!lat || !lon) {
@@ -38,11 +37,9 @@ export async function GET(request: NextRequest) {
       country = reverseData.address.country || "Unknown";
     }
 
-    const tempUnit = unit === "fahrenheit" ? "fahrenheit" : "celsius";
-    const windUnit = unit === "fahrenheit" ? "mph" : "kmh";
-
+    // Always Celsius and km/h from API; client converts for display
     const forecastRes = await fetch(
-      `${FORECAST_URL}?latitude=${lat}&longitude=${lon}&timezone=${encodeURIComponent(timezone)}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&temperature_unit=${tempUnit}&wind_speed_unit=${windUnit}`
+      `${FORECAST_URL}?latitude=${lat}&longitude=${lon}&timezone=${encodeURIComponent(timezone)}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&temperature_unit=celsius&wind_speed_unit=kmh`
     );
 
     if (!forecastRes.ok) {
@@ -67,7 +64,7 @@ export async function GET(request: NextRequest) {
       apparentTemperature: current.apparent_temperature,
       humidity: current.relative_humidity_2m,
       windSpeed: Math.round(current.wind_speed_10m),
-      windUnit,
+      windUnit: "kmh",
       weatherCode: current.weather_code,
       dailyForecast,
     });

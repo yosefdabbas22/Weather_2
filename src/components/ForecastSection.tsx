@@ -3,6 +3,7 @@
 import { WeatherIconComponent } from "@/lib/weather-codes";
 import { useTranslations } from "@/hooks/useTranslations";
 import { useWeatherConditions } from "@/hooks/useWeatherConditions";
+import { celsiusToFahrenheit } from "@/lib/utils";
 
 interface ForecastDay {
   date: string;
@@ -34,6 +35,8 @@ export function ForecastSection({ forecast, unit, langCode }: ForecastSectionPro
     ...day,
     dayName: formatDayName(day.date, langCode),
     condition: getCondition(day.weatherCode).label,
+    displayTempMax: unit === "fahrenheit" ? celsiusToFahrenheit(day.tempMax) : day.tempMax,
+    displayTempMin: unit === "fahrenheit" ? celsiusToFahrenheit(day.tempMin) : day.tempMin,
   }));
 
   return (
@@ -55,8 +58,8 @@ export function ForecastSection({ forecast, unit, langCode }: ForecastSectionPro
           >
             <span className="text-[14px] text-white">{day.dayName}</span>
             <span className="text-[14px] text-[#99ABBD]">
-              {Math.round(day.tempMax)}
-              {tempSuffix} / {Math.round(day.tempMin)}
+              {Math.round(day.displayTempMax)}
+              {tempSuffix} / {Math.round(day.displayTempMin)}
               {tempSuffix}
             </span>
             <span className="text-[14px] text-[#99ABBD]">
