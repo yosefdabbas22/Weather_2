@@ -11,6 +11,8 @@
   "noResults": "No results found",
   "loading": "Loading...",
   "toggleUnitAria": "Toggle temperature unit",
+  "toggleToFahrenheit": "Switch temperature unit to Fahrenheit",
+  "toggleToCelsius": "Switch temperature unit to Celsius",
   "forecastTitle": "5-Day Forecast",
   "day": "Day",
   "highLow": "High/Low",

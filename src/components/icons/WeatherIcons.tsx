@@ -5,19 +5,17 @@ import { cn } from "@/lib/utils";
 
 import sunnyImg from "./img/sunny.png";
 import partlyCloudyImg from "./img/partly-cloudy.png";
-import cloudyImg from "./img/cloudy.png";
 import rainyImg from "./img/rainy.png";
-import thunderstormImg from "./img/thunderstorm.png";
-import fogImg from "./img/fog.png";
-import snowImg from "./img/ChatGPT Image Jan 30, 2026, 07_31_41 PM.png";
+import snowImg from "./img/SnowCloud.png";
+import thunderstormImg from "./img/ThundweStorm.png";
 
 const ICON_IMAGES: Record<string, { src: typeof sunnyImg; alt: string }> = {
   sunny: { src: sunnyImg, alt: "Sunny" },
   "partly-cloudy": { src: partlyCloudyImg, alt: "Partly cloudy" },
-  cloudy: { src: cloudyImg, alt: "Cloudy" },
+  cloudy: { src: partlyCloudyImg, alt: "Cloudy" },
   rainy: { src: rainyImg, alt: "Rainy" },
   thunderstorm: { src: thunderstormImg, alt: "Thunderstorm" },
-  fog: { src: fogImg, alt: "Fog" },
+  fog: { src: partlyCloudyImg, alt: "Fog" },
   snow: { src: snowImg, alt: "Snow" },
 };
 

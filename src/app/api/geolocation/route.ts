@@ -53,7 +53,7 @@ export async function GET(request: NextRequest) {
     const current = forecastData.current;
     const daily = forecastData.daily;
 
-    const dailyForecast = daily.time.slice(0, 5).map((dateStr: string, i: number) => ({
+    const dailyForecast = daily.time.slice(0, 6).map((dateStr: string, i: number) => ({
       date: dateStr,
       weatherCode: daily.weather_code[i],
       tempMax: daily.temperature_2m_max[i],

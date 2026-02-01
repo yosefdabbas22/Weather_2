@@ -142,14 +142,14 @@ export function SearchBar({
   return (
     <div ref={containerRef} className="relative w-full">
       <form onSubmit={handleSubmit} className="w-full">
-        <div className="flex h-[72px] items-center gap-3 rounded-card bg-card px-4 py-3">
+        <div className="flex h-12 min-w-[160px] max-w-[928px] w-full flex-none items-center gap-3 self-stretch rounded-card bg-card px-4">
           <svg
             width="24"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="flex-shrink-0 text-muted"
+            className="flex-shrink-0 text-white"
             aria-hidden
           >
             <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
@@ -164,6 +164,7 @@ export function SearchBar({
             placeholder={placeholder ?? t("searchPlaceholder")}
             disabled={disabled}
             aria-label={ariaLabel ?? t("searchAriaLabel")}
+            role="combobox"
             aria-expanded={showDropdown}
             aria-autocomplete="list"
             aria-controls="search-suggestions-list"

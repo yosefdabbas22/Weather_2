@@ -27,7 +27,10 @@ export function ForecastSection({ forecast, unit, langCode }: ForecastSectionPro
   const { getCondition } = useWeatherConditions(langCode);
   const tempSuffix = unit === "fahrenheit" ? "°F" : "°C";
 
-  const forecastWithLocalized = forecast.map((day) => ({
+  // Skip today (index 0); show next 5 future days starting from tomorrow
+  const futureDays = forecast.slice(1, 6);
+
+  const forecastWithLocalized = futureDays.map((day) => ({
     ...day,
     dayName: formatDayName(day.date, langCode),
     condition: getCondition(day.weatherCode).label,
