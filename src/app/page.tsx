@@ -51,6 +51,36 @@ function getErrorMessage(
 
 type AppState = "empty" | "loading" | "success" | "error";
 
+const LAST_LOCATION_KEY = "weather-last-location";
+
+// localStorage utilities for last location
+function saveLastLocation(lat: number, lon: number): void {
+  try {
+    localStorage.setItem(LAST_LOCATION_KEY, JSON.stringify({ lat, lon }));
+  } catch {
+    // Fail silently if localStorage is unavailable
+  }
+}
+
+function getLastLocation(): { lat: number; lon: number } | null {
+  try {
+    const stored = localStorage.getItem(LAST_LOCATION_KEY);
+    if (!stored) return null;
+    const parsed = JSON.parse(stored);
+    if (
+      typeof parsed?.lat === "number" &&
+      typeof parsed?.lon === "number" &&
+      !isNaN(parsed.lat) &&
+      !isNaN(parsed.lon)
+    ) {
+      return { lat: parsed.lat, lon: parsed.lon };
+    }
+  } catch {
+    // Fail silently if localStorage is unavailable or corrupted
+  }
+  return null;
+}
+
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [unit, setUnit] = useState<TemperatureUnit>("celsius");
@@ -98,6 +128,8 @@ export default function Home() {
         // Store coordinates as source of truth
         if (data.latitude != null && data.longitude != null) {
           coordinatesRef.current = { lat: data.latitude, lon: data.longitude };
+          // Save to localStorage as last searched location
+          saveLastLocation(data.latitude, data.longitude);
           addRecentSearch({
             name: data.city,
             country: data.country,
@@ -117,7 +149,7 @@ export default function Home() {
   );
 
   const fetchByCoordinates = useCallback(
-    async (lat: number, lon: number, silent = false) => {
+    async (lat: number, lon: number, silent = false, saveToStorage = false) => {
       if (!silent) {
         setState("loading");
         setErrorMessage(null);
@@ -143,6 +175,10 @@ export default function Home() {
         }
         // Store coordinates as source of truth
         coordinatesRef.current = { lat, lon };
+        // Save to localStorage if this is a user-initiated search
+        if (saveToStorage) {
+          saveLastLocation(lat, lon);
+        }
       } catch (err) {
         if (!silent) {
           setState("error");
@@ -191,26 +227,100 @@ export default function Home() {
     );
   }, [t, langCode]);
 
-  useEffect(() => {
-    fetchByGeolocation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // Track if initial load has been performed
+  const hasInitialLoadRef = useRef(false);
+  // Track the initial langCode to detect restoration
+  const initialLangCodeRef = useRef<string | null>(null);
 
-  // Track previous langCode to detect changes
+  // Initial load: check localStorage first, then fall back to geolocation
+  // CRITICAL: Wait for language to be fully restored before fetching
+  useEffect(() => {
+    // Skip if already loaded
+    if (hasInitialLoadRef.current) {
+      return;
+    }
+
+    // Track initial langCode on first render
+    if (initialLangCodeRef.current === null) {
+      initialLangCodeRef.current = langCode;
+    }
+
+    // Check if language has been restored from localStorage
+    // LanguageContext starts with "en", then restores in useEffect
+    // We must wait until langCode matches what's stored in localStorage
+    const checkLanguageReady = () => {
+      try {
+        if (typeof window !== "undefined") {
+          const storedLang = localStorage.getItem("weather-language");
+          
+          // If no stored language, default is "en"
+          // Ready if langCode is "en" (matches default) AND we're past initial render
+          if (storedLang === null) {
+            // Wait for at least one render cycle to ensure LanguageContext initialized
+            return langCode === "en" && initialLangCodeRef.current !== null;
+          }
+          
+          // CRITICAL: langCode must match stored language
+          // AND langCode must have changed from initial "en" (indicating restoration happened)
+          // OR if stored is "en", langCode should be "en" and we've rendered at least once
+          if (storedLang === langCode) {
+            // If stored is not "en", wait for langCode to change from initial "en"
+            if (storedLang !== "en" && initialLangCodeRef.current === langCode) {
+              return false; // Still waiting for restoration
+            }
+            return true; // Language matches and has been restored
+          }
+        }
+      } catch {
+        // If localStorage is unavailable, wait for langCode to change from initial
+        return initialLangCodeRef.current !== langCode;
+      }
+      
+      return false;
+    };
+
+    const isLanguageReady = checkLanguageReady();
+
+    if (!isLanguageReady) {
+      // Language not ready yet - LanguageContext's useEffect hasn't completed
+      // This effect will run again when langCode changes
+      return;
+    }
+
+    // Language is now ready and matches stored value, proceed with fetch
+    hasInitialLoadRef.current = true;
+    const lastLocation = getLastLocation();
+    if (lastLocation) {
+      // Use last searched location with current language (now guaranteed to be correct)
+      // fetchByCoordinates will use langCode from its closure, which is now the restored value
+      fetchByCoordinates(lastLocation.lat, lastLocation.lon, false, false);
+    } else {
+      // No previous search, use geolocation with current language
+      fetchByGeolocation();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [langCode]); // Depend on langCode - will re-run when LanguageContext restores it
+
+  // Track previous langCode to detect changes (excluding initial load)
   const prevLangCodeRef = useRef<string | null>(null);
 
   // Silently refetch weather data when language changes using coordinates
   useEffect(() => {
-    // Skip on initial mount
+    // Skip if initial load hasn't completed yet
+    if (!hasInitialLoadRef.current) {
+      return;
+    }
+
+    // Skip on first render after initial load
     if (prevLangCodeRef.current === null) {
       prevLangCodeRef.current = langCode;
       return;
     }
 
-    // Refetch using coordinates when language changes
+    // Refetch using coordinates when language changes (user-initiated language switch)
     if (prevLangCodeRef.current !== langCode && coordinatesRef.current && weatherData) {
       const { lat, lon } = coordinatesRef.current;
-      fetchByCoordinates(lat, lon, true);
+      fetchByCoordinates(lat, lon, true, false); // Call with silent = true, don't save to storage
     }
 
     prevLangCodeRef.current = langCode;
@@ -236,7 +346,8 @@ export default function Home() {
     lon: number;
   }) => {
     addRecentSearch(item);
-    fetchByCoordinates(item.lat, item.lon);
+    // Save as last location when user selects from recent searches
+    fetchByCoordinates(item.lat, item.lon, false, true);
     setSearchQuery("");
   };
 
@@ -252,7 +363,8 @@ export default function Home() {
         <Header unit={unit} onUnitChange={handleUnitChange} />
 
         <main className="flex flex-1 flex-col px-6 pt-1 pb-5 md:px-20 lg:px-40">
-          <div className="mx-auto flex w-full max-w-[960px] flex-col">
+          {/* Depth 4 – Frame 0: Search Bar Container */}
+          <div className="mx-auto flex h-[72px] w-[960px] grow-0 flex-col items-start self-stretch px-4 py-3">
             <SearchBar
               value={searchQuery}
               onChange={setSearchQuery}
@@ -263,6 +375,9 @@ export default function Home() {
               language={langCode}
               disabled={state === "loading"}
             />
+          </div>
+
+          <div className="mx-auto flex w-full max-w-[960px] flex-col">
 
             {state === "empty" && (
               <div className="mt-4 flex flex-col items-center justify-center gap-4 py-16 text-center">

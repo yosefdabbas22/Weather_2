@@ -23,19 +23,13 @@ export function Header({ unit, onUnitChange }: HeaderProps) {
   return (
     <div className="w-full max-w-[1298px] shrink-0">
       <header
-        className="
-          flex
-          w-full
-          flex-wrap
-          items-center
-          justify-between
-          gap-y-2
-          px-4
-          py-3
-
-          sm:flex-nowrap
-          sm:px-10
-        "
+        className="flex w-[1298px] h-12 grow-0 flex-row items-center justify-between self-stretch border-b px-10 py-3"
+        style={{
+          borderBottomColor: "rgba(230, 232, 235, 0.2)",
+          borderBottomWidth: "1px",
+          borderBottomStyle: "solid",
+          boxSizing: "border-box",
+        }}
       >
         {/* LEFT: Logo + App name */}
         <div className="flex items-center gap-2 whitespace-nowrap">
@@ -61,7 +55,7 @@ export function Header({ unit, onUnitChange }: HeaderProps) {
         </div>
 
         {/* RIGHT: Language + Unit */}
-        <div className="flex w-full justify-end items-center gap-2 whitespace-nowrap sm:w-auto">
+        <div className="flex items-center gap-2 whitespace-nowrap">
           <div className="relative flex items-center">
             <select
               value={langCode}
@@ -117,13 +111,6 @@ export function Header({ unit, onUnitChange }: HeaderProps) {
           </button>
         </div>
       </header>
-
-      {/* Divider */}
-      <div
-        className="h-px w-full"
-        style={{ backgroundColor: "rgba(230, 232, 235, 0.2)" }}
-        aria-hidden
-      />
     </div>
   );
 }
