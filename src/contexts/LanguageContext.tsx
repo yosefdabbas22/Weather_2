@@ -20,7 +20,9 @@ export interface Language {
   rtl?: number;
 }
 
-const LANGUAGES: Language[] = languagesData as Language[];
+const LANGUAGES: Language[] = (languagesData as Language[]).filter(
+  (lang) => lang.code === "en" || lang.code === "ar"
+);
 
 interface LanguageContextValue {
   language: Language;

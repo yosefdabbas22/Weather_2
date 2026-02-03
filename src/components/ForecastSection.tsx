@@ -1,9 +1,15 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import { WeatherIconComponent } from "@/lib/weather-codes";
 import { useTranslations } from "@/hooks/useTranslations";
 import { useWeatherConditions } from "@/hooks/useWeatherConditions";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { celsiusToFahrenheit } from "@/lib/utils";
+import {
+  staggerListVariants,
+  fadeInVariants,
+} from "@/lib/motion-variants";
 
 interface ForecastDay {
   date: string;
@@ -25,6 +31,8 @@ function formatDayName(dateStr: string, langCode: string): string {
 
 export function ForecastSection({ forecast, unit, langCode }: ForecastSectionProps) {
   const { t } = useTranslations();
+  const { isRtl } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
   const { getCondition } = useWeatherConditions(langCode);
   const tempSuffix = unit === "fahrenheit" ? "°F" : "°C";
 
@@ -39,9 +47,12 @@ export function ForecastSection({ forecast, unit, langCode }: ForecastSectionPro
     displayTempMin: unit === "fahrenheit" ? celsiusToFahrenheit(day.tempMin) : day.tempMin,
   }));
 
+  // Adjust fade direction based on RTL/LTR - reduced movement for smoother feel
+  const fadeInDirection = isRtl ? 6 : -6;
+
   return (
     <section className="w-full" aria-labelledby="forecast-title">
-      <h2 id="forecast-title" className="mb-5 text-[22px] font-bold text-white">
+      <h2 id="forecast-title" className="mb-4 text-[22px] font-bold text-white">
         {t("forecastTitle")}
       </h2>
       <div className="overflow-hidden rounded-[12px] border border-[#384757] bg-transparent">
@@ -51,25 +62,42 @@ export function ForecastSection({ forecast, unit, langCode }: ForecastSectionPro
           <span>{t("condition")}</span>
           <span className="sr-only">{t("weatherIconAria")}</span>
         </div>
-        {forecastWithLocalized.map((day) => (
-          <div
-            key={day.date}
-            className="grid h-[72px] min-h-[72px] grid-cols-[1.2fr_1fr_1fr_72px] items-center gap-4 border-t border-[#384757] bg-transparent px-4 first:border-t-0"
-          >
-            <span className="text-[14px] text-white">{day.dayName}</span>
-            <span className="text-[14px] text-[#99ABBD]">
-              {Math.round(day.displayTempMax)}
-              {tempSuffix} / {Math.round(day.displayTempMin)}
-              {tempSuffix}
-            </span>
-            <span className="text-[14px] text-[#99ABBD]">
-              {day.condition}
-            </span>
-            <div className="flex h-[72px] w-[72px] shrink-0 items-center justify-center">
-              <WeatherIconComponent code={day.weatherCode} size={72} alt={day.condition} />
-            </div>
-          </div>
-        ))}
+        <motion.div
+          variants={shouldReduceMotion ? {} : staggerListVariants}
+          initial="initial"
+          animate="animate"
+        >
+          {forecastWithLocalized.map((day) => (
+            <motion.div
+              key={`${day.date}-${langCode}`}
+              variants={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      ...fadeInVariants,
+                      initial: {
+                        ...fadeInVariants.initial,
+                        x: fadeInDirection,
+                      },
+                    }
+              }
+              className="grid h-[72px] min-h-[72px] grid-cols-[1.2fr_1fr_1fr_72px] items-center gap-4 border-t border-[#384757] bg-transparent px-4 first:border-t-0"
+            >
+              <span className="text-[14px] text-white">{day.dayName}</span>
+              <span className="text-[14px] text-[#99ABBD]">
+                {Math.round(day.displayTempMax)}
+                {tempSuffix} / {Math.round(day.displayTempMin)}
+                {tempSuffix}
+              </span>
+              <span className="text-[14px] text-[#99ABBD]">
+                {day.condition}
+              </span>
+              <div className="flex h-[72px] w-[72px] shrink-0 items-center justify-center">
+                <WeatherIconComponent code={day.weatherCode} size={72} alt={day.condition} />
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

@@ -60,6 +60,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       city,
       country,
+      latitude: parseFloat(lat),
+      longitude: parseFloat(lon),
       temperature: current.temperature_2m,
       apparentTemperature: current.apparent_temperature,
       humidity: current.relative_humidity_2m,
