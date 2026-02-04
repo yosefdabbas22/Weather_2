@@ -10,10 +10,10 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Clima — Smart Weather Forecast",
-  description: "Fast, multi-language weather forecasts with a clean, modern UI.",
+  title: " Smart Weather Forecasts, Anywhere",
+  description:
+    "Fast, accurate weather forecasts with a clean, modern UI.",
 };
-
 
 export default function RootLayout({
   children,
