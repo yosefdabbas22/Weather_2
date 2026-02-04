@@ -77,7 +77,7 @@ export function StatsCards({ humidity, windSpeed, feelsLike, unit }: StatsCardsP
 
   return (
     <motion.div
-      className="flex w-full flex-col gap-4 lg:grid lg:grid-cols-3"
+      className="grid w-full grid-cols-2 gap-4 lg:grid-cols-3"
       variants={shouldReduceMotion ? {} : staggerContainerVariants}
       initial="initial"
       animate="animate"
@@ -98,7 +98,7 @@ export function StatsCards({ humidity, windSpeed, feelsLike, unit }: StatsCardsP
         />
       </motion.div>
 
-      <motion.div variants={fadeUpVariants}>
+      <motion.div className="col-span-2 lg:col-span-1" variants={fadeUpVariants}>
         <StatCard
           title={t("feelsLike")}
           value={`${Math.round(displayFeelsLike)}${tempSuffix}`}
