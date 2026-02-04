@@ -98,7 +98,7 @@ export function StatsCards({ humidity, windSpeed, feelsLike, unit }: StatsCardsP
         />
       </motion.div>
 
-      <motion.div className="col-span-2 lg:col-span-1" variants={fadeUpVariants}>
+      <motion.div className="col-span-2 w-[calc((100%-1rem)/2)] mx-auto lg:col-span-1 lg:w-full lg:mx-0" variants={fadeUpVariants}>
         <StatCard
           title={t("feelsLike")}
           value={`${Math.round(displayFeelsLike)}${tempSuffix}`}

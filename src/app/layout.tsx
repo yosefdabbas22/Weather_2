@@ -10,9 +10,10 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Weather App",
-  description: "Production-ready weather web application",
+  title: "Clima — Smart Weather Forecast",
+  description: "Fast, multi-language weather forecasts with a clean, modern UI.",
 };
+
 
 export default function RootLayout({
   children,
@@ -21,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={spaceGrotesk.variable} suppressHydrationWarning>
-      <body className="min-h-screen bg-background font-sans antialiased">
+      <body className="min-h-screen overflow-x-hidden bg-background font-sans antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>

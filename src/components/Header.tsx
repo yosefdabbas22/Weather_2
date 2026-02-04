@@ -23,12 +23,13 @@ export function Header({ unit, onUnitChange }: HeaderProps) {
   return (
     <div className="w-full max-w-[1298px] shrink-0">
       <header
-        className="flex w-[1298px] h-12 grow-0 flex-row items-center justify-between self-stretch border-b px-10 py-3"
+        className="flex w-full max-w-[1298px] h-12 grow-0 flex-row items-center justify-between self-stretch border-b px-10 py-3"
         style={{
           borderBottomColor: "rgba(230, 232, 235, 0.2)",
           borderBottomWidth: "1px",
           borderBottomStyle: "solid",
           boxSizing: "border-box",
+          
         }}
       >
         {/* LEFT: Logo + App name */}

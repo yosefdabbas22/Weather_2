@@ -358,13 +358,13 @@ export default function Home() {
   const tempSuffix = unit === "fahrenheit" ? "°F" : "°C";
 
   return (
-    <div className="flex min-h-[800px] flex-col bg-background">
+    <div className="flex min-h-[800px] flex-col overflow-x-hidden bg-background">
       <div className="mx-auto flex w-full max-w-[1298px] flex-1 flex-col">
         <Header unit={unit} onUnitChange={handleUnitChange} />
 
         <main className="flex flex-1 flex-col px-6 pt-1 pb-5 md:px-20 lg:px-40">
           {/* Depth 4 – Frame 0: Search Bar Container */}
-          <div className="mx-auto flex h-[72px] w-[960px] grow-0 flex-col items-start self-stretch px-4 py-3">
+          <div className="mx-auto flex h-[72px] w-full max-w-[960px] grow-0 flex-col items-start self-stretch px-4 py-3">
             <SearchBar
               value={searchQuery}
               onChange={setSearchQuery}
@@ -409,30 +409,30 @@ export default function Home() {
 
             {state === "success" && weatherData && (
               <div className="flex flex-col">
-                {/* Frame 1: City name only */}
-                <div className="flex h-[76px] max-w-[960px] grow-0 flex-col items-center self-stretch pt-6 px-4 pb-3">
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.h1
-                      key={`city-${coordinatesRef.current?.lat}-${coordinatesRef.current?.lon}-${langCode}`}
-                      initial="initial"
-                      animate="animate"
-                      exit="exit"
-                      variants={shouldReduceMotion ? {} : fadeSlideVariants}
-                      className="text-center text-2xl font-bold text-white md:text-3xl"
-                    >
-                      {(weatherData.city === "Unknown"
-                        ? t("unknownPlace")
-                        : weatherData.city)}
-                      ,{" "}
-                      {(weatherData.country === "Unknown"
-                        ? t("unknownPlace")
-                        : weatherData.country)}
-                    </motion.h1>
-                  </AnimatePresence>
-                </div>
+                  {/* Frame 1: City name only */}
+                  <div className="flex h-[76px] w-full max-w-[960px] grow-0 flex-col items-center self-stretch pt-6 px-4 pb-3">
+                    <AnimatePresence mode="wait" initial={false}>
+                      <motion.h1
+                        key={`city-${coordinatesRef.current?.lat}-${coordinatesRef.current?.lon}-${langCode}`}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        variants={shouldReduceMotion ? {} : fadeSlideVariants}
+                        className="text-center text-2xl font-bold text-white md:text-3xl"
+                      >
+                        {(weatherData.city === "Unknown"
+                          ? t("unknownPlace")
+                          : weatherData.city)}
+                        ,{" "}
+                        {(weatherData.country === "Unknown"
+                          ? t("unknownPlace")
+                          : weatherData.country)}
+                      </motion.h1>
+                    </AnimatePresence>
+                  </div>
 
-                {/* Frame 2: Weather description + icon */}
-                <div className="flex h-[68px] max-w-[960px] grow-0 flex-row items-center justify-center self-stretch gap-[21px] pt-1 px-4 pb-3">
+                  {/* Frame 2: Weather description + icon */}
+                  <div className="flex h-[68px] w-full max-w-[960px] grow-0 flex-row items-center justify-center self-stretch gap-[21px] pt-1 px-4 pb-3">
                   <WeatherIconComponent
                     code={weatherData.weatherCode}
                     size={40}
