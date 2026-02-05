@@ -10,9 +10,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: " Smart Weather Forecasts, Anywhere",
+  title: "Smart Weather Forecasts, Anywhere",
   description:
-  "This weather application is designed to provide fast and accurate forecasts using real-time data from trusted sources."
+    "This weather application is designed to provide fast and accurate forecasts using real-time data from trusted sources. The platform helps users across different regions track weather conditions, plan their day, and stay informed with a clean, modern, and easy-to-use experience.",
 
 };
 
